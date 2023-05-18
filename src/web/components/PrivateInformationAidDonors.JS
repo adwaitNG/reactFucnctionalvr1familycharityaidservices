@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { Navigate ,useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-
-function privateInformationAidDonors () {
-  const [name, setName] = useState('');
-  const [nationalityDonors, setNationalityDonors] = useState('');
-  const [nationalityDocName1, setNationalityDocName1] = useState('');  
-  const [nationalityDocNum1, setNationalityDocNum1] = useState('');
-  const [nationalityDocExp1, setNationalityDocExp1] = useState('');
-  const [nationalityDocName2, setNationalityDocName2] = useState('');  
-  const [nationalityDocNum2, setNationalityDocNum2] = useState('');
-  const [nationalityDocExp2, setNationalityDocExp2] = useState('');
-  const [nationalityDocName3, setNationalityDocName3] = useState('');  
-  const [nationalityDocNum3, setNationalityDocNum3] = useState('');
-  const [nationalityDocExp3, setNationalityDocExp3] = useState('');
-  const [file, setFile] = useState('')
+function privateInformationAidDonors() {
+  const [name, setName] = useState("");
+  const [nationalityDonors, setNationalityDonors] = useState("");
+  const [nationalityDocName1, setNationalityDocName1] = useState("");
+  const [nationalityDocNum1, setNationalityDocNum1] = useState("");
+  const [nationalityDocExp1, setNationalityDocExp1] = useState("");
+  const [nationalityDocName2, setNationalityDocName2] = useState("");
+  const [nationalityDocNum2, setNationalityDocNum2] = useState("");
+  const [nationalityDocExp2, setNationalityDocExp2] = useState("");
+  const [nationalityDocName3, setNationalityDocName3] = useState("");
+  const [nationalityDocNum3, setNationalityDocNum3] = useState("");
+  const [nationalityDocExp3, setNationalityDocExp3] = useState("");
+  const [file, setFile] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,22 +33,22 @@ function privateInformationAidDonors () {
       nationalityDocNum3,
       nationalityDocExp3,
       file,
-      typeOfForm: 'privateInformationAidDonors'
+      typeOfForm: "privateInformationAidDonors",
     };
     console.log(doc);
-    const url = '/api/generalInfo/add';
-    axios.post(url, doc).then((res) => {
+    const url = "/api/generalInfo/add";
+    axios
+      .post(url, doc)
+      .then((res) => {
         console.log(res);
         navigate("/volunteerPage");
-       
-    }).catch((err) => console.log(err));
-   
-
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div>
-        <h1>Private Information of Aid Donors</h1>
+    <div class="row text-center">
+      <h1>Private Information of Aid Donors</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <br />
@@ -95,7 +94,6 @@ function privateInformationAidDonors () {
         />
         <br />
 
-        
         <label htmlFor="name">Nationality document Expiry:</label>
         <br />
         <input
@@ -129,7 +127,6 @@ function privateInformationAidDonors () {
         />
         <br />
 
-        
         <label htmlFor="name">Nationality document Expiry:</label>
         <br />
         <input
@@ -163,7 +160,6 @@ function privateInformationAidDonors () {
         />
         <br />
 
-        
         <label htmlFor="name">Nationality document Expiry:</label>
         <br />
         <input
@@ -175,8 +171,6 @@ function privateInformationAidDonors () {
         />
         <br />
 
-
-        
         <label htmlFor="files">Nationality documents:</label>
         <br />
         <input
@@ -189,19 +183,11 @@ function privateInformationAidDonors () {
         />
         <br />
 
-
-        <input
-          type="text"
-          id="typeOfForm"
-          name="typeOfForm"
-          value="privateInformationAidDonors"
-          style={{ visibility: 'hidden' }}
-        />
-        <button type="submit" name="submit">
+        <button type="submit" name="submit" className="btn btn-info">
           Submit
         </button>
       </form>
     </div>
-   )
+  );
 }
-export default privateInformationAidDonors
+export default privateInformationAidDonors;

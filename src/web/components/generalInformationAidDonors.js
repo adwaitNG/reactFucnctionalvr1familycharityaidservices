@@ -1,48 +1,49 @@
-import React, { useState } from 'react';
-import { Navigate ,useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function generalInformationAidDonors () {
+function generalInformationAidDonors() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [mailingAddress, setMailingAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [preferredModeCommunication, setPreferredModeCommunication] =
+    useState("");
+  const [nameOrganization, setNameOrganization] = useState("");
+  const [addressHeadquarter, setAddressHeadquarter] = useState("");
+  const [namePrincipalContactPerson, setNamePrincipalContactPerson] =
+    useState("");
 
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
-    const [mailingAddress, setMailingAddress] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [preferredModeCommunication,setPreferredModeCommunication] = useState('')
-    const [nameOrganization, setNameOrganization] = useState('')
-    const [addressHeadquarter, setAddressHeadquarter] = useState('')
-    const [namePrincipalContactPerson, setNamePrincipalContactPerson] = useState('')
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const doc = {
-            name,
-            age,
-            mailingAddress,
-            phoneNumber,
-            email,
-            preferredModeCommunication,
-            nameOrganization,
-            addressHeadquarter,
-            namePrincipalContactPerson,
-            typeOfForm: 'generalInformationAidDonors'
-        };
-        console.log(doc);
-        const url = '/api/generalInfo/add';
-        axios.post(url, doc).then((res) => {
-            console.log(res);
-            navigate("/volunteerPage");
-        
-        }).catch((err) => console.log(err));
-   
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const doc = {
+      name,
+      age,
+      mailingAddress,
+      phoneNumber,
+      email,
+      preferredModeCommunication,
+      nameOrganization,
+      addressHeadquarter,
+      namePrincipalContactPerson,
+      typeOfForm: "generalInformationAidDonors",
+    };
+    console.log(doc);
+    const url = "/api/generalInfo/add";
+    axios
+      .post(url, doc)
+      .then((res) => {
+        console.log(res);
+        navigate("/volunteerPage");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div>
+    <div class="row text-center">
       <h1>General Information of Aid Donors</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
@@ -77,7 +78,7 @@ function generalInformationAidDonors () {
           onChange={(e) => setMailingAddress(e.target.value)}
         />
         <br />
-      
+
         <label htmlFor="name">Phone Number:</label>
         <br />
         <input
@@ -99,7 +100,7 @@ function generalInformationAidDonors () {
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-      
+
         <label htmlFor="name">Preferred Mode of Communication:</label>
         <br />
         <input
@@ -144,20 +145,11 @@ function generalInformationAidDonors () {
         />
         <br />
 
-        
-
-        <input
-          type="text"
-          id="typeOfForm"
-          name="typeOfForm"
-          value="generalInformationAidDonors"
-          style={{ visibility: 'hidden' }}
-        />
-        <button type="submit" name="submit">
+        <button type="submit" name="submit" className="btn btn-info">
           Submit
         </button>
       </form>
     </div>
-   )
+  );
 }
-export default generalInformationAidDonors
+export default generalInformationAidDonors;

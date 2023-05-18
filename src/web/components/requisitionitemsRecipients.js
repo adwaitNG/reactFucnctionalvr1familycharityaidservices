@@ -6,7 +6,6 @@ function requisitionitemsRecipients() {
   const navigate = useNavigate();
   const [dataFetched, setDataFetched] = useState(false);
 
-  
   //Data reacived from database
   const [kits, setKits] = useState([]);
   const [items, setItems] = useState([]);
@@ -77,6 +76,7 @@ function requisitionitemsRecipients() {
     newItemData.items.push([
       items[e.target.value].itemName,
       items[e.target.value].itemDes,
+      items[e.target.value].category,
     ]);
     setCurrentItemDes(items[e.target.value].itemDes);
     setIemData(newItemData);
@@ -87,6 +87,7 @@ function requisitionitemsRecipients() {
     for (let i = 1; i <= numsKits; i++) {
       dropdowns.push(
         <div key={i}>
+          <br />
           <label>Kits {i}:</label>
           <select id="Kits" onChange={(e) => handleOptionChangeKit(e)}>
             <option>Select Option --</option>
@@ -107,7 +108,6 @@ function requisitionitemsRecipients() {
     for (let i = 1; i <= numItems; i++) {
       dropdowns.push(
         <div key={i}>
-          <br />
           <br />
           <label>Category {i}:</label>
           <select id="Category" onChange={(e) => handleOptionChangeCategory(e)}>
@@ -183,7 +183,8 @@ function requisitionitemsRecipients() {
   };
 
   return (
-    <div>
+    <div class="row text-center">
+      <h1> Requisition of items from Aid Recipients</h1>
       <form onSubmit={handleSubmit}>
         <label>Number of Kits:</label>
         <input
@@ -195,7 +196,7 @@ function requisitionitemsRecipients() {
         {renderDropdownKits()}
         <br />
         <br />
-        {currentKitDes}
+        Currently Selected Kit Description: {currentKitDes}
         <br />
         <label>Number of Items:</label>
         <input
@@ -206,10 +207,10 @@ function requisitionitemsRecipients() {
         />
         {renderDropdownCategory()}
         <br />
-        {currentItemDes}
+        Currently Selected Item Description: {currentItemDes}
         <br />
-        <button type="submit" name="submit">
-          Add New Item
+        <button type="submit" name="submit" className="btn btn-info">
+          Submit
         </button>
       </form>
     </div>

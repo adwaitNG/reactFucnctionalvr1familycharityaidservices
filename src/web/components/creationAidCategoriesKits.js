@@ -6,10 +6,9 @@ function creationAidCategoriesKits() {
   const [dataFetched, setDataFetched] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  const [itemName, setItemName] = useState('');
+  const [itemName, setItemName] = useState("");
 
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const url = "/api/generalInfo/fetchCategoriesKits";
@@ -23,70 +22,63 @@ function creationAidCategoriesKits() {
     e.preventDefault();
     const doc = {
       itemName,
-      status:'Low',
-      typeOfForm: 'creationAidCategoriesKits'
+      status: "Low",
+      typeOfForm: "creationAidCategoriesKits",
     };
     console.log(doc);
-    const url = '/api/generalInfo/add';
-    axios.post(url, doc).then((res) => {
+    const url = "/api/generalInfo/add";
+    axios
+      .post(url, doc)
+      .then((res) => {
         console.log(res);
         navigate("/volunteerPage");
-       
-    }).catch((err) => console.log(err));
-   
-
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     dataFetched && (
-      <div>
-        <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Inventory Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((item) => (
-            <tr key={item.name}>
-              <td>{item.itemName}</td>
-              <td>{item.status}</td>
+      <div class="row text-center">
+        <h1>Create Aid Category</h1>
+        <div class="row text-center" style={{paddingLeft: 500 , paddingRight:500}} >
+        <table >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Inventory Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <br/>
-      <br/>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name"><h3>Category Name:</h3></label>
-         <br />
-         <input
-          type="text"
-           id="name"
-           name="name"
-           value={itemName}
-           onChange={(e) => setItemName(e.target.value)}
-         />
-         <br />
-         <input
-           type="text"
-           id="status"
-           name="status"
-           value="Low"
-           style={{ visibility: 'hidden' }}
-         />
-         <input
-           type="text"
-           id="typeOfForm"
-           name="typeOfForm"
-           value="creationAidCategoriesKits"
-           style={{ visibility: 'hidden' }}
-         />
-         <button type="submit" name="submit">
-           Add New Category
-         </button>
-       </form>
+          </thead>
+          <tbody>
+            {categories.map((item) => (
+              <tr key={item.name}>
+                <td>{item.itemName}</td>
+                <td>{item.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        
+        <br />
+        <br />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">
+            <h3>Category Name:</h3>
+          </label>
+          <br />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
+          />
+          <br />
+       
+          <button type="submit" name="submit" className="btn btn-info">
+            Add New Category
+          </button>
+        </form>
       </div>
     )
   );

@@ -59,30 +59,36 @@ function creationAidCategoriesKits() {
 
   return (
     dataFetched && (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Inventory Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.map((item) => (
-              <tr key={item.name}>
-                <td>{item.itemName}</td>
-                <td>{item.status}</td>
+      <div class="row text-center">
+        <h1>Create Aid Item</h1>
+        <div
+          class="row text-center"
+          style={{ paddingLeft: 500, paddingRight: 500 }}
+        >
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Inventory Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {categories.map((item) => (
+                <tr key={item.name}>
+                  <td>{item.itemName}</td>
+                  <td>{item.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p></p>
         <br />
         <br />
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">
-            <h3>Item Name:</h3>
+            <h5>Item Name:</h5>
           </label>
-          <br />
           <input
             type="text"
             id="name"
@@ -125,7 +131,7 @@ function creationAidCategoriesKits() {
             onChange={(e) => setItemDes(e.target.value)}
           ></textarea>
           <br />
-          <button type="submit" name="submit">
+          <button type="submit" name="submit" className="btn btn-info">
             Add New Item
           </button>
         </form>

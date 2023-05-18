@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Navigate ,useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function GeneralInfoForm () {
-  const [name, setName] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [address, setAddress] = useState('');
-  const [familyMember, setFamilyMember] = useState('');
-  const [partnerName, setPartnerName] = useState('');
-  const [kidNum, setKidNum] = useState('');
-  const [kidsName, setKidsName] = useState('');
+function GeneralInfoForm() {
+  const [name, setName] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [address, setAddress] = useState("");
+  const [familyMember, setFamilyMember] = useState("");
+  const [partnerName, setPartnerName] = useState("");
+  const [kidNum, setKidNum] = useState("");
+  const [kidsName, setKidsName] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,21 +23,21 @@ function GeneralInfoForm () {
       partnerName,
       kidNum,
       kidsName,
-      typeOfForm: 'GeneralInformationofAidRecipients'
+      typeOfForm: "GeneralInformationofAidRecipients",
     };
     console.log(doc);
-    const url = '/api/generalInfo/add';
-    axios.post(url, doc).then((res) => {
+    const url = "/api/generalInfo/add";
+    axios
+      .post(url, doc)
+      .then((res) => {
         console.log(res);
         navigate("/volunteerPage");
-       
-    }).catch((err) => console.log(err));
-   
-
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div>
+    <div class="row text-center">
       <h1>General Information of Aid Recipients</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
@@ -119,18 +119,12 @@ function GeneralInfoForm () {
         ></textarea>
         <br />
 
-        <input
-          type="text"
-          id="typeOfForm"
-          name="typeOfForm"
-          value="GeneralInformationofAidRecipients"
-          style={{ visibility: 'hidden' }}
-        />
-        <button type="submit" name="submit">
+      
+        <button type="submit" name="submit" className="btn btn-info">
           Submit
         </button>
       </form>
     </div>
-   )
+  );
 }
-export default GeneralInfoForm
+export default GeneralInfoForm;

@@ -11,7 +11,7 @@ function creationKits() {
   const [kitDes, setKitDes] = useState("");
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const url2 = "/api/generalInfo/fetchDonor";
     axios.get(url2).then((res) => {
@@ -28,10 +28,10 @@ function creationKits() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const doc = {
-        kitName,
-        donor,
-        kitDes,
-        typeOfForm: "createkit",
+      kitName,
+      donor,
+      kitDes,
+      typeOfForm: "createkit",
     };
     console.log(doc);
     const url = "/api/generalInfo/add";
@@ -46,12 +46,12 @@ function creationKits() {
 
   return (
     dataFetched && (
-      <div>
-          <form onSubmit={handleSubmit}>
+      <div class="row text-center">
+        <h1>Create Aid Kits</h1>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="name">
-            <h3>Kit Name:</h3>
+            Kit Name:
           </label>
-          <br />
           <input
             type="text"
             id="name"
@@ -61,33 +61,30 @@ function creationKits() {
           />
           <br />
           <br />
-          
+
           <label htmlFor="donorName">Select Donor:</label>
           <select id="category" onChange={(e) => handleOptionChangeDonor(e)}>
             <option></option>
             {donors.map((option) => (
-              <option
-                key={option.name}
-                value={option.name}
-              >
+              <option key={option.name} value={option.name}>
                 {option.name}
               </option>
             ))}
           </select>
-          <br/>
-          <br/>
+          <br />
+          <br />
 
           <textarea
-          id="kitDes"
-          name="kitDes"
-          rows="4"
-          cols="50"
-          placeholder="Enter Kit Description here..."
-          value={kitDes}
-          onChange={(e) => setKitDes(e.target.value)}
-        ></textarea>
-        <br />
-          <button type="submit" name="submit">
+            id="kitDes"
+            name="kitDes"
+            rows="4"
+            cols="50"
+            placeholder="Enter Kit Description here..."
+            value={kitDes}
+            onChange={(e) => setKitDes(e.target.value)}
+          ></textarea>
+          <br />
+          <button type="submit" name="submit" className="btn btn-info">
             Add New Kit
           </button>
         </form>
