@@ -1,9 +1,11 @@
 {
-  "name": "vr1familycharityaidservices",
+  "name": "https://adwaitNG.github.io/reactFucnctionalvr1familycharityaidservices",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack & node ./app.js",
     "build": "webpack"
@@ -21,6 +23,7 @@
     "chart.js": "^4.3.0",
     "css-loader": "^6.7.3",
     "express": "^4.18.2",
+    "gh-pages": "^5.0.0",
     "mongodb": "^5.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
